@@ -1,22 +1,18 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+import config from './config/env'
 
 async function fetchData() {
-  try {
-    const response = await fetch('http://localhost:5000/tasks', {
-      headers:{
-        authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9'
-      },
-      mode: 'no-cors'
-    });
-    const data = await response.json();
-  } catch (error) {
-    console.error('Error al realizar la petición:', error);
-  }
+  const response = await fetch(`${config.HOST}/tasks`, { headers:{ authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NjBiYjk3ZjMxMWQxNmY4NDg3YTQzZiIsImlhdCI6MTcwMDgzODI5NSwiZXhwIjoxNzAwOTI0Njk1fQ.1RYKKGsy6VAtIwu6EsWo93YDZBKb1b9oBv7FUbyCg3s'}})
+  if(!response.body) return
+  const blob = response.body.getReader()
+  const { value } = await blob.read()
+  const textDecoder = new TextDecoder('utf-8')
+  console.log(textDecoder.decode(value))
 }
 
-setInterval(fetchData, 5000);
+fetchData()
 </script>
 
 <template>
