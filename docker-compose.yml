@@ -21,6 +21,7 @@ services:
     image: node:20.9.0
     container_name: client
     working_dir: /client
+    network_mode: host
     volumes:
       - ./client:/client
     ports:
@@ -36,10 +37,11 @@ services:
     image: node:20.9.0
     container_name: server
     working_dir: /server
+    network_mode: host
     volumes:
       - ./server:/server
     ports:
-      - 8888:8888
+      - 5000:5000
     depends_on:
       mongo:
         condition: service_started
@@ -50,7 +52,6 @@ services:
   mongo:
     image: mongo:7.0.4-rc0
     container_name: mongo
-    restart: always
     ports:
       - 27017:27017
     environment:
@@ -63,7 +64,6 @@ services:
     
   mongo-express:
     image: mongo-express
-    restart: always
     container_name: mongo-express
     ports:
       - 8081:8081

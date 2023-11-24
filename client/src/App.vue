@@ -1,6 +1,22 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+
+async function fetchData() {
+  try {
+    const response = await fetch('http://localhost:5000/tasks', {
+      headers:{
+        authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9'
+      },
+      mode: 'no-cors'
+    });
+    const data = await response.json();
+  } catch (error) {
+    console.error('Error al realizar la petición:', error);
+  }
+}
+
+setInterval(fetchData, 5000);
 </script>
 
 <template>
@@ -9,6 +25,7 @@ import HelloWorld from './components/HelloWorld.vue'
 
     <div class="wrapper">
       <HelloWorld msg="You did it!" />
+      <h1>Hola???</h1>
 
       <nav>
         <RouterLink to="/">Home</RouterLink>
