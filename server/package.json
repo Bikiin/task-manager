@@ -7,7 +7,7 @@
     "tsc": "tsc",
     "test": "test",
     "dev": "ts-node-dev --env-file .env src/index.ts",
-    "start": "node --env-file .env build/index.js"
+    "start": "node build/index.js"
   },
   "author": "breystonbarton15@gmail.com",
   "license": "ISC",

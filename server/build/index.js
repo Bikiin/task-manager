@@ -1,0 +1,20 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const cors_1 = __importDefault(require("cors"));
+const routers_1 = require("./routers");
+const mongo_1 = require("./database/mongo");
+const responseFormatMiddleware_1 = require("./middlewares/responseFormatMiddleware");
+const errorHandling_1 = require("./middlewares/errorHandling");
+const config_1 = __importDefault(require("./config"));
+const app = (0, express_1.default)();
+app.use(express_1.default.json());
+app.use((0, cors_1.default)());
+app.use(responseFormatMiddleware_1.responseMiddleware);
+app.use(routers_1.router);
+app.use(errorHandling_1.errorHandling);
+(0, mongo_1.dbConnect)().then(() => console.log("Conexion Ready"));
+app.listen(config_1.default.PORT, () => console.log(`SERVER LISTENING ON ${config_1.default.URL}`));
