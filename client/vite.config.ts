@@ -11,6 +11,11 @@ export default ({ mode }: { mode: string }) => {
     plugins: [
       vue(),
     ],
+    server:{
+      host: true,
+      strictPort: true,
+      port: 4173
+    },
     resolve: {
       alias: {
         '@': fileURLToPath(new URL('./src', import.meta.url))
