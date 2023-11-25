@@ -17,4 +17,4 @@ app.use(errorHandling)
 
 dbConnect().then(() => console.log("Conexion Ready"));
 
-app.listen(config.PORT, ()=> console.log(`SERVER LISTENING ON http://${config.URL}`))
+app.listen(config.PORT, ()=> console.log(`SERVER LISTENING ON ${config.URL}`))

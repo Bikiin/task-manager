@@ -1,6 +1,13 @@
 import { Router } from "express";
 import { readdirSync } from "fs";
 
+//Code to generate dynamically the routes, 
+//this code makes that inside the routes 
+//it is not necessary to name the name of the route. Example:
+//routes/tasks.ts
+//before router.get('/tasks', cb)
+//then router.get('/', cb)
+
 const PATH_ROUTER = `${__dirname}`
 const router = Router()
 

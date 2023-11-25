@@ -13,6 +13,9 @@ export const taskGeneralSchema = z.object({
     userEmail: z
       .string()
       .email({ message: "Invalid email format" }),
+    userName: z
+      .string()
+      .min(1, { message: "Name is required" }),
     title: z
       .string()
       .min(1, { message: "Title is to short" }),

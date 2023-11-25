@@ -1,3 +1,4 @@
 export default {
-    HOST: 'http://192.168.247.2:5000',
+    //to get ip: docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' server
+    API: import.meta.env.VITE_API,
 }
